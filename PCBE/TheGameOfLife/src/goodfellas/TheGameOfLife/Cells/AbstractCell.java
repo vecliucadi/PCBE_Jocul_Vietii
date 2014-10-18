@@ -8,7 +8,7 @@ private int timesItAte=0;
 private CellState cellState=CellState.HUNGRY;
 private IFoodListener foodListener;
 private IDieListener dieListener;
-private IReproductionListener reproductionListener;
+protected IReproductionListener reproductionListener;
 
 protected AbstractCell(int T_Full,int T_Starve)
 	{
@@ -16,7 +16,7 @@ protected AbstractCell(int T_Full,int T_Starve)
 	this.T_Starve=T_Starve;
 	}
 
-public abstract void reproduce();
+public abstract void reproduce(AbstractCell cell);
 
 public void addHungryListener(IFoodListener foodListener)
 	{
@@ -43,5 +43,68 @@ public boolean isReadyForReproduction()
 public CellState getState()
 	{
 	return cellState;
+	}
+
+public void run() 
+	{
+	try
+		{
+		switch(cellState)
+			{
+			case HUNGRY: 
+				{
+				if (foodListener.getFood()>0)
+					{
+					timesItAte++;
+					if (!isReadyForReproduction())
+						cellState=CellState.HAPPY;
+					else cellState=CellState.REPRODUCE;
+					}
+				else 
+					{
+					wait(T_Full*timesItAte);
+					cellState=CellState.STARVING;
+					}
+				
+				};break;
+			case HAPPY:
+				{
+				if (isReadyForReproduction())
+					cellState=CellState.REPRODUCE;
+				wait(T_Full*timesItAte);
+				};break;
+			case REPRODUCE:
+				{
+				reproduce(this);
+				timesItAte=0;
+				cellState=CellState.HUNGRY;
+				}
+			case STARVING:
+				{
+				if (foodListener.getFood()>0)
+					{
+					timesItAte++;
+					if (isReadyForReproduction())
+						cellState=CellState.REPRODUCE;
+					else
+						cellState=CellState.HUNGRY;
+					}
+				else
+					{
+					wait(T_Starve);
+					cellState=CellState.DEAD;
+					}
+				};break;
+			case DEAD:
+				{
+				dieListener.cellDied();
+				}
+			}
+			
+		} catch (InterruptedException e)
+		{
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
 	}
 }
