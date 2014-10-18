@@ -1,0 +1,5 @@
+package goodfellas.TheGameOfLife.Cells;
+
+public interface IFoodListener {
+	public int getFood();
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;goodfellas.TheGameOfLife.Tests.ASCellTests&apos; to &apos;CellTests&apos;&#x0A;- Original project: &apos;TheGameOfLife&apos;&#x0A;- Original element: &apos;goodfellas.TheGameOfLife.Tests.ASCellTests&apos;&#x0A;- Renamed element: &apos;goodfellas.TheGameOfLife.Tests.CellTests&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ASCellTests&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;goodfellas.TheGameOfLife.Tests{ASCellTests.java[ASCellTests" matchStrategy="1" name="CellTests" qualified="false" references="true" similarDeclarations="false" stamp="1413638431756" textual="false" version="1.0"/>
+</session>

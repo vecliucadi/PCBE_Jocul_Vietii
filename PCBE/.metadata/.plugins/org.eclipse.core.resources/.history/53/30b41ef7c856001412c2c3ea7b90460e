@@ -1,0 +1,5 @@
+package goodfellas.TheGameOfLife.Cells;
+
+public interface IDieListener {
+
+}
